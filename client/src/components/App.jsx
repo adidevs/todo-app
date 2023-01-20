@@ -3,7 +3,7 @@ import AppBar from "./NavBar";
 import CreateArea from "./CreateArea";
 import Tasks from "./Tasks";
 import axios from "axios";
-const baseURL = "http://localhost:1000/";
+const baseURL = "https://todo-nryd.onrender.com";
 export default function App() {
 
     const [tasks, setTask] = useState([]);
