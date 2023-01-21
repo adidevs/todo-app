@@ -22,7 +22,7 @@ export default function NavBar() {
             sx={{ flexGrow: 1 }}>
             <b>{new Date().toDateString()}</b>
           </Typography>
-          <LoginForm/>
+          <LoginForm id="loginbtn"/>
         </Toolbar>
       </AppBar>
     </Box>
