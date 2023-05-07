@@ -1,0 +1,14 @@
+nav{
+    display: flex;
+    justify-content: space-between;
+    background-color: #f5ba13;
+}
+.navItem{
+    display: inline-block;
+    text-align: center;
+    margin: auto;
+    color: #ffffff;
+}
+.logout-btn{
+    border: 2px solid #ffffff;
+}

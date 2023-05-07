@@ -9,6 +9,7 @@ body {
 .date {
     font-family: inherit;
     font-weight: 500;
+    z-index: 800;
 }
 
 .createArea {

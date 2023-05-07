@@ -1,29 +1,26 @@
 import * as React from 'react';
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
-
-
+import { Link } from 'react-router-dom';
+import '../pages/css/navbar.css';
 export default function NavBar() {
+  let account;
+  (localStorage.getItem("user") === "") ? account = false : account = true;
+
+  let logStatus = (account) ? "Log Out" : "Log In";
+
+  const handleLog = () => {
+    if (logStatus === "Log Out") {
+      localStorage.setItem("user", "");
+    }
+  }
 
   return (
-    <Box sx={{ flexGrow: 1 }}>
-      <AppBar
-        style={{ background: 'opaque', boxShadow: 'none' }}
-        position="static"
-        sx={{ bgcolor: "#ffce00" }}>
-        <Toolbar>
-          <Typography
-            className='date'
-            style={{ textAlign: 'center' }}
-            variant="h5"
-            component="div"
-            sx={{ flexGrow: 1 }}>
-            <b>{new Date().toDateString()}</b>
-          </Typography>
-        </Toolbar>
-      </AppBar>
-    </Box>
+    <React.Fragment>
+      <nav>
+        <div className='navItem'><p>{new Date().toDateString()}</p></div>
+        <div className='navItem'><h1 >Task Manager</h1></div>
+        <div className='navItem'><Link to="/"><button onClick={handleLog} className='logout-btn'>{logStatus}</button> </Link></div>
+      </nav>
+    </React.Fragment>
+
   );
 }
