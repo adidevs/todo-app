@@ -36,7 +36,7 @@ export default function CreateArea(props) {
           onChange={handleChange}
           value={task.title}
           id="task"
-          placeholder='Task...(25 characters max)' />
+          placeholder='Task...(25 char max)' />
 
         <textarea
           name="description"
@@ -44,8 +44,8 @@ export default function CreateArea(props) {
           autoComplete="off"
           onChange={handleChange}
           value={task.description}
-          id="desc" rows="2"
-          placeholder='Description...(100 characters max)' />
+          id="desc" rows="4" className="description"
+          placeholder='Description...(100 characters max & Task cannot be blank)' />
 
         <button
           className='addTask'

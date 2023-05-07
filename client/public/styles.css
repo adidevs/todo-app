@@ -59,6 +59,7 @@ textarea {
     background-color: #e2e2e2;
     padding: 2%;
     border-radius: 5px;
+    max-width: 90%;
 }
 
 .task h1 {
@@ -69,6 +70,7 @@ textarea {
 .task p {
     font-size: 1em;
     font-weight: 300;
+    word-wrap:break-word;
 }
 
 .task .delTask {
@@ -81,4 +83,15 @@ textarea {
     height: 36px;
     cursor: pointer;
     outline: none;
+}
+
+@media screen and (max-width: 900px) {
+    .createArea {
+        width: 60%;
+        height: 20vh;
+    }
+    .createArea input,
+    textarea {
+        margin: 2%;
+    }
 }

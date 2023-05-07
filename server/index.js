@@ -9,8 +9,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors({ origin: '*' }));
 
-mongoose.connect(process.env.clusterURL, { useNewUrlParser: true })
-    .then(() => app.listen(process.env.PORT || "1000", () => console.log("DB CONNECTED AND SERVER RUNNING")))
-    .catch(err => console.log(err.message));
+mongoose.connect(process.env.clusterURL, {useNewUrlParser: true})
+            .then(()=> app.listen("1000",() => console.log("DB CONNECTED AND SERVER RUNNING")))
+            .catch( err => console.log(err.message)); 
 
 app.use("/", routes);
