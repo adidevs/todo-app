@@ -20,7 +20,7 @@ export default function Home() {
 
     useEffect(() => {
         const username = { username: user }
-        axios.post(baseURL + "/get", username)
+        axios.post(baseURL + "get", username)
             .then((res) => {
                 setTask(res.data.tasks)
             })
@@ -29,7 +29,7 @@ export default function Home() {
 
     function delTask(_id) {
         const deleteTask = { username: user, id: _id };
-        axios.post(baseURL + "/delete", deleteTask) //post request to server
+        axios.post(baseURL + "delete", deleteTask) //post request to server
             .catch((err) => alert(err.message));
     }
 
