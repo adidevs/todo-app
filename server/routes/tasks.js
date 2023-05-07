@@ -1,9 +1,11 @@
 const express = require("express");
-const { getTasks, createTasks, deleteTasks } = require("../controllers/tasks");
+const { getTasks, createTasks, deleteTasks, createAccount, checkAccount } = require("../controllers/tasks");
 const router = express.Router();
 
-router.get("/", getTasks);
+router.post("/get", getTasks);
 router.post("/", createTasks);
-router.get("/:id", deleteTasks);
+router.post("/delete", deleteTasks);
+router.post("/signup", createAccount);
+router.get("/signin/:user/:password", checkAccount);
 
 module.exports = router;

@@ -1,0 +1,27 @@
+form{
+    text-align: center ;
+    margin: 0 auto;
+}
+input{
+    margin: 10px;
+    padding: 10px;
+    border: none;
+    border-bottom: 2px solid #f5ba13;
+    background-color: #fff0f0;
+}
+.account{
+    text-align: center;
+    margin-top: 30vh;
+}
+button{
+    margin: 10px;
+    padding: 10px;
+    color: #ffffff;
+    border-radius: 5px;
+    border: none;
+    background-color: #f5ba13;
+}
+
+button:hover{
+    background-color: #f45019;
+}
