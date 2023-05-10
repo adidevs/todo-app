@@ -1,7 +1,7 @@
 const Task = require("../models/tasks.js");
 const Account = require("../models/tasks.js");
 
-exports.getTasks = async (req, res) => {
+exports.getTasks = async (req, res) => { // get all tasks
     try {
         const user = req.body.username;
         const account = await Account.find({ username: user });
@@ -11,7 +11,7 @@ exports.getTasks = async (req, res) => {
     }
 }
 
-exports.createTasks = async (req, res) => {
+exports.createTasks = async (req, res) => { // create a task
     try {
         const newTask = req.body;
         const user = req.body.username;
@@ -29,7 +29,7 @@ exports.createTasks = async (req, res) => {
     }
 };
 
-exports.deleteTasks = async (req, res) => {
+exports.deleteTasks = async (req, res) => { // delete a task
     const user = req.body.username;
     const id = req.body.id;
     try {
@@ -44,7 +44,7 @@ exports.deleteTasks = async (req, res) => {
     }
 };
 
-exports.createAccount = async (req, res) => {
+exports.createAccount = async (req, res) => { // create an account
     try {
         const newAccount = req.body;
         const result = await Account.insertMany(newAccount);
@@ -56,7 +56,7 @@ exports.createAccount = async (req, res) => {
     }
 };
 
-exports.checkAccount = async (req, res) => {
+exports.checkAccount = async (req, res) => { // check if an account exists
     try {
         const user = req.params.user;
         const passcode = req.params.password;
