@@ -20,9 +20,13 @@ export default function CreateArea(props) {
   }
 
   function submitTask(event) {
-    props.onAdd(task);
     event.preventDefault();
-
+    if (task.title !== "") {
+      props.onAdd(task);
+    }
+    else {
+      alert("Task cannot be blank");
+    }
   }
 
   return (

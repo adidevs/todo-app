@@ -2,13 +2,13 @@ const Account = require("../models/tasks.js");
 
 exports.getTasks = async (req, res) => { // get all tasks
     try {
-        const user = req.body.username;
-        const account = await Account.find({ username: user })
+        const user = req.params.username;
+        await Account.find({ username: user })
             .then((result) => {
                 return res.status(200).json(result); 
             })
             .catch((err) => {
-                return res.status(500).json({ message: err.message });
+                return res.status(404).json({ message: err.message });
             });
     } catch (error) {
         return res.status(500).json({ message: error.essage });
@@ -18,7 +18,7 @@ exports.getTasks = async (req, res) => { // get all tasks
 exports.createTasks = async (req, res) => { // create a task
     try {
         const newTask = req.body;
-        const user = req.body.username;
+        const user = req.params.username;
         await Account.findOneAndUpdate({ username: user }, { $push: { tasks: newTask } }, { new: true })
             .then((result) => {
                 return res.status(200).json(result);
@@ -27,7 +27,7 @@ exports.createTasks = async (req, res) => { // create a task
                 return res.status(400).json({ message: err.message });
             });
     } catch (error) {
-        return res.status().json({ message: error.essage });
+        return res.status(500).json({ message: error.essage });
     }
 };
 
@@ -37,8 +37,7 @@ exports.deleteTasks = async (req, res) => { // delete a task
         const id = req.body.id;
         await Account.findOneAndUpdate(
             { username: user },
-            { $pull: { tasks: { _id: id } } },
-            { new: true })
+            { $pull: { tasks: { _id: id } } })
             .then((result) => {
                 return res.status(200).json(result);
             })
@@ -63,7 +62,7 @@ exports.createAccount = async (req, res) => { // create an account
             });
 
     } catch (error) {
-        return res.status(500).json();
+        return res.status(500).json({ message: error.message});
     }
 };
 

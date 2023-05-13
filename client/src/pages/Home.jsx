@@ -10,17 +10,15 @@ export default function Home() {
 
     const [tasks, setTask] = useState([{}]);
     function addNote(newTask) {
-        newTask.username = user;
         if (tasks.length < 50) {
-            axios.post(baseURL, newTask) //post request to server
+            axios.post(`${baseURL}/create/${user}`, newTask) //post request to server
         } else {
             alert("Maximum limit Reached(50), Delete some tasks to continue.");
         }
     }
 
     useEffect(() => {
-        const username = { username: user }
-        axios.post(baseURL + "get", username)
+        axios.get(baseURL + user) 
             .then((res) => {
                 setTask(res.data.tasks)
             })
@@ -28,7 +26,10 @@ export default function Home() {
     });
 
     function delTask(_id) {
-        const deleteTask = { username: user, id: _id };
+        const deleteTask = { 
+            username: user,
+            id: _id
+        };
         axios.post(baseURL + "delete", deleteTask) //post request to server
             .catch((err) => alert(err.message));
     }
