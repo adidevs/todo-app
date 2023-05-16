@@ -42,7 +42,6 @@ export default function SignIn() {
     }
 
     const submitInfo = (event) => {
-        console.log(baseURL);
         event.preventDefault();
         if (info.password !== "" && info.username !== "")
             checkLogin();
