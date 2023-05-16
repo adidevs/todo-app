@@ -44,6 +44,7 @@ export default function SignUp() {
         await axios.post(`${baseURL}signup`, info) //post request to server
             .then(response => {
                 if (response.status === 200) {
+                    alert("Account Created Successfully! Log in to continue.");
                     return navigate("/signin"); //redirect to login page
                 }
                 else {
