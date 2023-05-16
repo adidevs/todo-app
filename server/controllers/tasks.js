@@ -54,7 +54,6 @@ exports.createAccount = async (req, res) => { // create an account
         const newAccount = req.body;
         await Account.insertMany(newAccount)
             .then((result) => {
-                console.log(result);
                 return res.status(200).json(result);
             })
             .catch((err) => {
@@ -75,7 +74,6 @@ exports.checkAccount = async (req, res) => { // check if an account exists
                 return res.status(200).json(result);
             })
             .catch((err) => {
-                console.log(err);
                 return res.status(404).json({ message: err.message });
             });
     } catch (error) {
