@@ -6,32 +6,47 @@ import axios from "axios";
 const baseURL = process.env.REACT_APP_API_URL;
 
 export default function Home() {
+
     const user = localStorage.getItem("user");
 
+    useEffect(() => {
+        axios.get(baseURL + user) 
+            .then((res) => {
+                setTask(res.data[0].tasks)
+            })
+            .catch((err) => alert(err.message));
+    }, [user]);
+
     const [tasks, setTask] = useState([{}]);
-    function addNote(newTask) {
+    const addNote = async (newTask) => {
         if (tasks.length < 50) {
-            axios.post(`${baseURL}/create/${user}`, newTask) //post request to server
+            axios.post(`${baseURL}create/${user}`, newTask) //post request to server
+            .then(getTasks())
+            .catch((err) => alert(err.message))
+            .finally(getTasks());
         } else {
             alert("Maximum limit Reached(50), Delete some tasks to continue.");
         }
     }
 
-    useEffect(() => {
-        axios.get(baseURL + user) 
+    const getTasks = async () => {
+
+        await axios.get(baseURL + user) 
             .then((res) => {
-                setTask(res.data.tasks)
+               setTask(res.data[0].tasks)
             })
             .catch((err) => alert(err.message));
-    });
+    }
 
-    function delTask(_id) {
+    const delTask = async (_id) => {
         const deleteTask = { 
             username: user,
             id: _id
         };
-        axios.post(baseURL + "delete", deleteTask) //post request to server
-            .catch((err) => alert(err.message));
+        await axios.post(baseURL + "delete", deleteTask) //post request to server   
+        .then(getTasks())
+        .catch((err) => alert(err.message))
+        .finally(getTasks());
     }
 
     if (user !== "") {
@@ -61,3 +76,7 @@ export default function Home() {
         )
     }
 }
+
+
+//Create an async function called test below
+
